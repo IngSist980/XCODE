@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(cors()); // Agrega este middleware para habilitar CORS
+app.use(cors()); 
 
 app.get('/end_point', (consulta, respuesta) => {
     respuesta.json({ mensaje: 'Servidor iniciado' });
