@@ -155,7 +155,7 @@ async function editarUsuario() {
         return;
     }
 
-    
+
 
     const objetoEditado = {
         nombre,
@@ -246,7 +246,9 @@ function actualizarLista() {
                     <td>${Usuario.cedula}</td> 
                 `;
                 UsuariosList.appendChild(row);
+      
             });
+            
         })
         .catch(error => {
             alert(error);
