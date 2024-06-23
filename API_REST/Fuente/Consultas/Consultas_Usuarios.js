@@ -1,20 +1,14 @@
 const get = "SELECT id, nombre, cedula FROM Usuarios";
-const getById = "SELECT numero, fecha_creacion, divisa FROM asiento WHERE numero = $1";
-const checkIdExists = "SELECT numero, fecha_creacion, divisa FROM asiento WHERE numero = $1";
-const add = "INSERT INTO asiento (numero, fecha_creacion, divisa) VALUES ($1, $2, $3)";
-
-
-
-
-
-
-const remove = "DELETE FROM ASIENTO WHERE numero = $1";
-const update = "UPDATE ASIENTO SET id_asiento=$1, num_asiento=$2, num_cuenta=$3, cuenta=$4, debitos=$5, creditos=$6, descripcion=$7, impuestos=$8, fecha_creacion=$9, fecha_emision_factura=$10, proveedor=$11  WHERE numero = $12";
+const getById = "SELECT id, nombre, cedula FROM Usuarios WHERE id = $1";
+const checkCedulaExists = "SELECT id, nombre, cedula FROM Usuarios WHERE cedula = $1";
+const add = "INSERT INTO Usuarios (nombre, cedula) VALUES ($1, $2)";
+const remove = "DELETE FROM Usuarios WHERE id = $1";
+const update = "UPDATE Usuarios SET nombre=$1, cedula=$2  WHERE id = $3";
 
 module.exports = {
     get,
     getById,
-    checkIdExists,
+    checkCedulaExists,
     add,
     remove,
     update,
