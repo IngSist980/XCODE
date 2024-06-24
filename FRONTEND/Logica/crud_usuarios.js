@@ -202,11 +202,12 @@ function llenarSelect() {
                 const selectedId = this.value;
 
                 // Obtener la información de la persona seleccionada
-                const UsuarioSeleccionado = Usuario.find(Usuario => Usuario.id == selectedId);
+                const UsuarioSeleccionado = Usuarios.find(Usuario => Usuario.id == selectedId);
+
 
                 if (UsuarioSeleccionado) {
-                    document.getElementById('nombreEditar').value = personaSeleccionada.nombre;
-                    document.getElementById('cedulaEditar').value = personaSeleccionada.cedula;
+                    document.getElementById('nombreEditar').value = UsuarioSeleccionado.nombre;
+                    document.getElementById('cedulaEditar').value = UsuarioSeleccionado.cedula;
     
                 } else {
                     // Limpiar campos de texto si la persona seleccionada no está definida
@@ -291,3 +292,4 @@ document.addEventListener('DOMContentLoaded', function () {
     // Llenar lista de personas al cargar la página
     actualizarLista();
 });
+
