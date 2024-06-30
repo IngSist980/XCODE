@@ -1,33 +1,27 @@
 const express = require("express");
 const cors = require("cors");
 const Rutas_Usuarios = require('./Fuente/Rutas/Rutas_Usuarios');
+const Rutas_Producto = require('./Fuente/Rutas/Rutas_Producto');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors({origin:'*'}));    //acceso a todos los origenes, cualquier url
-/*
-const whitelist = ['https://sacf-2022.web.app']
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error())
-    }
-  }
-}
-*/
+// Configuración de CORS
+app.use(cors({origin: '*'}));
 
+// Middleware para parsear JSON
 app.use(express.json());
-app.use(cors()); 
 
-app.get('/end_point', (consulta, respuesta) => {
-    respuesta.json({ mensaje: 'Servidor iniciado' });
+// Ruta de prueba
+app.get('/end_point', (req, res) => {
+    res.json({ mensaje: 'Servidor iniciado' });
 });
 
+// Rutas de la API
 app.use('/api/Usuarios', Rutas_Usuarios);
+app.use('/api/Producto', Rutas_Producto);
 
+// Iniciar el servidor
 app.listen(port, () => {
     console.log(`Servidor iniciado en el puerto localhost:${port}`);
 });
