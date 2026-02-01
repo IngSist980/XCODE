@@ -10,18 +10,37 @@ const get = (req, res) => {
 
 
 const add = (req, res) => {
-    const {nombre, cedula  } = req.body;
+    const { nombre, cedula } = req.body;
+
+    if (!nombre || !cedula) {
+        return res.status(400).json({
+            mensaje: "Nombre y cédula son obligatorios"
+        });
+    }
+
     pool.query(queries.checkCedulaExists, [cedula], (error, results) => {
-        if (results.rows.length) {
-            res.json("El usuario ya existe");
-            return;
+        if (error) {
+            return res.status(500).json({ error: error.message });
         }
-        pool.query(queries.add, [nombre, cedula], (error, results) => {
-            if (error) throw error;
-            res.status(201).json("¡Creado exitosamente!");
+
+        if (results.rows.length) {
+            return res.status(409).json({
+                mensaje: "El usuario ya existe"
+            });
+        }
+
+        pool.query(queries.add, [nombre, cedula], (error) => {
+            if (error) {
+                return res.status(500).json({ error: error.message });
+            }
+
+            res.status(201).json({
+                mensaje: "¡Creado exitosamente!"
+            });
         });
     });
 };
+
 const getById = (req, res) => {
     const id = parseInt(req.params.id);
     pool.query(queries.getById, [id], (error, results) => {

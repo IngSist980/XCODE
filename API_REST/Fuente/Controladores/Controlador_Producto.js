@@ -56,7 +56,9 @@ const update = (req, res) => {
         }
         pool.query(queries.update, [nombre, numero, id], (error, results) => {
             if (error) throw error;
-            res.status(200).send("Actualizado exitosamente");
+            res.status(200).json({
+                mensaje: "Actualizado exitosamente"
+            });
         });
     });
 };
