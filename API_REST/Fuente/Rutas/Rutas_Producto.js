@@ -3,7 +3,7 @@ const controller = require('../Controladores/Controlador_Producto');
 
 const router = Router();
 
-router.get('/', controller.get);
+router.get('/', controller.get); // Ruta para obtener todos los productos 
 router.get("/:id", controller.getById);
 router.post("/", controller.add);
 router.put("/:id", controller.update);
