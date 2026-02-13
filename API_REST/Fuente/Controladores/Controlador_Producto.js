@@ -2,9 +2,9 @@ const pool = require("../../database");
 const queries = require('../Consultas/Consultas_Producto');
 
 const get = (req, res) => {
-    pool.query(queries.get, (error, results) => {
-        if (error) throw error;
-        res.status(200).json(results.rows);
+    pool.query(queries.get, (error, results) => { // Obtener todos los productos 
+        if (error) throw error; 
+        res.status(200).json(results.rows); // Enviar los resultados como JSON 200 código de estado HTTP
     });
 }
 
@@ -12,7 +12,7 @@ const add = (req, res) => {
     const { nombre, numero } = req.body;
     pool.query(queries.checkNumeroExists, [numero], (error, results) => {
         if (results.rows.length) {
-            res.json("El producto ya existe");
+            res.status(409).json({ mensaje: "El producto ya existe" }); // 409 código de estado HTTP para conflicto
             return;
         }
         pool.query(queries.add, [nombre, numero], (error, results) => {

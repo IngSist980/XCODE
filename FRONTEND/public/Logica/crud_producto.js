@@ -1,6 +1,6 @@
 const Producto_url = 'http://localhost:3000/api/Producto';
 
-function get(url) {
+function get(url) { // Función para realizar una solicitud GET a la API
     return fetch(url)
       .then((response) => {
         if (!response.ok) {
