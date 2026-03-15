@@ -3,16 +3,16 @@ const Usuario_url = 'http://localhost:3000/api/Usuarios';
 
 function get(url) {
     return fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Error al obtener los datos');
-        }
-        return response.json();
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        throw error;
-      });
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Error al obtener los datos');
+            }
+            return response.json();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        });
 }
 
 
@@ -46,50 +46,50 @@ function create(url, data) {
 
 
 function update(url, data) {
-  const requestOptions = {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data), // Convierte el objeto de datos a formato JSON
-  };
-  // Realiza la solicitud PUT a la API
-  fetch(url, requestOptions)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('La solicitud no se pudo completar correctamente');
-      }
-      return response.json(); // Parsea la respuesta JSON si la hay
-    })
-    .then(data => {
-      console.log('Respuesta de la API:', data);
-    })
-    .catch(error => {
-      console.error('Error en la solicitud:', error);
-    });
+    const requestOptions = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data), // Convierte el objeto de datos a formato JSON
+    };
+    // Realiza la solicitud PUT a la API
+    fetch(url, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('La solicitud no se pudo completar correctamente');
+            }
+            return response.json(); // Parsea la respuesta JSON si la hay
+        })
+        .then(data => {
+            console.log('Respuesta de la API:', data);
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+        });
 }
 
 function eliminate(url, id) {
     const requestOptions = {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
     };
-  
+
     // Realiza la solicitud DELETE a la API
     return fetch(`${url}/${id}`, requestOptions)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('La solicitud no se pudo completar correctamente');
-        }
-        console.log(`Eliminado con éxito para el ID: ${id}`);
-      })
-      .catch((error) => {
-        console.error(`Error al eliminar para el ID: ${id}`, error);
-        throw error;
-      });
-  }
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('La solicitud no se pudo completar correctamente');
+            }
+            console.log(`Eliminado con éxito para el ID: ${id}`);
+        })
+        .catch((error) => {
+            console.error(`Error al eliminar para el ID: ${id}`, error);
+            throw error;
+        });
+}
 
 
 
@@ -103,9 +103,9 @@ async function agregarUsuario() {
         return;
     }
 
-    
-    
-    const Usuario = { nombre, cedula};
+
+
+    const Usuario = { nombre, cedula };
 
     try {
         await create(Usuario_url, Usuario);
@@ -116,7 +116,7 @@ async function agregarUsuario() {
     } catch (error) {
         alert('Error al agregar Usuario.');
     }
-    
+
 }
 
 
@@ -126,7 +126,7 @@ async function eliminarUsuario() {
     const selectedId = document.getElementById('selectUsuario').value;
 
     if (!selectedId) {
-        alert('Por favor, seleccione una Usuario para eliminar.');
+        alert('Por favor, seleccione un Usuario para eliminar.');
         return;
     }
 
@@ -170,7 +170,7 @@ async function editarUsuario() {
         llenarSelect();
     } catch (error) {
         alert('Error al editar Usuario.');
-    } 
+    }
 }
 
 // Función para llenar opciones de select
@@ -208,7 +208,7 @@ function llenarSelect() {
                 if (UsuarioSeleccionado) {
                     document.getElementById('nombreEditar').value = UsuarioSeleccionado.nombre;
                     document.getElementById('cedulaEditar').value = UsuarioSeleccionado.cedula;
-    
+
                 } else {
                     // Limpiar campos de texto si la persona seleccionada no está definida
                     limpiarFormulario();
@@ -225,7 +225,7 @@ function llenarSelect() {
 function actualizarLista() {
     const UsuariosList = document.getElementById('UsuariosList');
 
-    
+
     get(Usuario_url)
         .then(Usuarios => {
             console.log(Usuarios);
@@ -240,16 +240,16 @@ function actualizarLista() {
 
             // Llenar la tabla con los datos de las personas
             Usuarios.forEach(Usuario => {
-                const row = document.createElement('tr'); 
+                const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${Usuario.id}</td>
                     <td>${Usuario.nombre}</td>
                     <td>${Usuario.cedula}</td> 
                 `;
                 UsuariosList.appendChild(row);
-      
+
             });
-            
+
         })
         .catch(error => {
             alert(error);
@@ -262,7 +262,7 @@ function limpiarFormulario() {
     document.getElementById('cedula').value = '';
 
     document.getElementById('nombreEditar').value = '';
-    document.getElementById('cedulaEditar').value = ''; 
+    document.getElementById('cedulaEditar').value = '';
 }
 
 
