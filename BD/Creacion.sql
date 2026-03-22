@@ -14,3 +14,9 @@ CREATE TABLE Producto (
     numero INTEGER NOT NULL
 );
 
+CREATE TABLE SUCURSAL (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(20),
+    direccion VARCHAR(100) 
+);
+
