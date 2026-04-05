@@ -20,3 +20,10 @@ CREATE TABLE SUCURSAL (
     direccion VARCHAR(100) 
 );
 
+CREATE TABLE CLIENTE (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(20),
+    direccion VARCHAR(100) 
+);
+
+

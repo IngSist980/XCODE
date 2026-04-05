@@ -3,13 +3,14 @@ const cors = require("cors");
 const Rutas_Usuarios = require('./Fuente/Rutas/Rutas_Usuarios');
 const Rutas_Producto = require('./Fuente/Rutas/Rutas_Producto');
 const Rutas_Sucursales = require('./Fuente/Rutas/Rutas_Sucursales');
+const Rutas_Clientes = require('./Fuente/Rutas/Rutas_Clientes');
 
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Configuración de CORS
-app.use(cors({origin: '*'}));
+app.use(cors({ origin: '*' }));
 
 // Middleware para parsear JSON
 app.use(express.json());
@@ -23,6 +24,9 @@ app.get('/end_point', (req, res) => {
 app.use('/api/Usuarios', Rutas_Usuarios);
 app.use('/api/Producto', Rutas_Producto);
 app.use('/api/Sucursales', Rutas_Sucursales);
+app.use('/api/Clientes', Rutas_Clientes);
+
+
 
 // Iniciar el servidor
 app.listen(port, () => {

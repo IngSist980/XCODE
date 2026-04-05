@@ -8,3 +8,6 @@ document.getElementById('btnUsuarios').addEventListener('click', function () {
 document.getElementById('btnSucursales').addEventListener('click', function () {
    window.location.href = './Estructura/crud_sucursales.html';
 });
+document.getElementById('btnClientes').addEventListener('click', function () {
+   window.location.href = './Estructura/crud_Clientes.html';
+});
